@@ -10,7 +10,7 @@ public class HologunBullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -23,7 +23,7 @@ public class HologunBullet : MonoBehaviour
     {
         if(other.gameObject.tag == "Ground")
         {
-            newPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+            newPosition = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
             Debug.Log(newPosition);
             player.transform.position = newPosition;
             Destroy(this.gameObject);
