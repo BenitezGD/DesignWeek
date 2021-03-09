@@ -6,7 +6,7 @@ public class Hologun : MonoBehaviour
 {
     public GameObject bullet;
     public Transform muzzle;
-
+    public float speed = 10f;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +21,7 @@ public class Hologun : MonoBehaviour
             GameObject fired = Instantiate(bullet, muzzle.position, muzzle.rotation);
             HologunBullet b = fired.GetComponent<HologunBullet>();
             b.player = this.transform.parent.parent.gameObject;
-
+            b.rb.AddForce(-transform.forward * speed, ForceMode.Impulse);
 
         }
     }
