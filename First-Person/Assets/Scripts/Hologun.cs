@@ -7,6 +7,8 @@ public class Hologun : MonoBehaviour
     public GameObject bullet;
     public Transform muzzle;
     public float speed = 10f;
+    public bool fired = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,13 +18,15 @@ public class Hologun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetMouseButtonDown(0) && !fired)
         {
-            GameObject fired = Instantiate(bullet, muzzle.position, muzzle.rotation);
-            HologunBullet b = fired.GetComponent<HologunBullet>();
-            b.player = this.transform.parent.parent.gameObject;
-            b.rb.AddForce(-transform.forward * speed, ForceMode.Impulse);
+            GameObject projectile = Instantiate(bullet, muzzle.position, muzzle.rotation);
+            HologunBullet pearl = projectile.GetComponent<HologunBullet>();
+            pearl.player = this.transform.parent.parent.gameObject;
+            pearl.gun = this;
+            pearl.rb.AddForce(-transform.forward * speed, ForceMode.Impulse);
 
+            fired = true;
         }
     }
 }
