@@ -21,7 +21,7 @@ public class Hologun : MonoBehaviour
             Debug.Log(chargeTime);
         }
 
-        if(Input.GetMouseButtonUp(0))
+        if(Input.GetMouseButtonUp(0) && !fired)
         {
             if (chargeTime > 2f)
             {
