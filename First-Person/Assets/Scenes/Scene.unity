@@ -2232,6 +2232,8 @@ MonoBehaviour:
   muzzle: {fileID: 744897894}
   speed: 151.7
   fired: 0
+  chargeTime: 0
+  maxChargeTime: 2
 --- !u!23 &936002342
 MeshRenderer:
   m_ObjectHideFlags: 0
