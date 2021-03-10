@@ -7,7 +7,13 @@ public class HologunBullet : MonoBehaviour
     public GameObject player;
     public Hologun gun;
     public Rigidbody rb;
+    public float gravity;
     Vector3 newPosition;
+
+    private void FixedUpdate()
+    {
+        rb.AddForce(Physics.gravity * gravity);
+    }
 
     private void OnCollisionEnter(Collision other)
     {
@@ -20,4 +26,6 @@ public class HologunBullet : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
+
+    
 }

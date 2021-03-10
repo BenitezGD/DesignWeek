@@ -6,7 +6,7 @@ public class Hologun : MonoBehaviour
 {
     public GameObject bullet;
     public Transform muzzle;
-    public float speed = 10f;
+    public float speed;
     public bool fired = false;
 
     // Start is called before the first frame update
