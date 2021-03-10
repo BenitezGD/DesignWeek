@@ -2231,6 +2231,7 @@ MonoBehaviour:
   bullet: {fileID: 1489147209010524249, guid: d87587582993f364f993dc0c0eed0ec6, type: 3}
   muzzle: {fileID: 744897894}
   speed: 20
+  fired: 0
 --- !u!23 &936002342
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2249,7 +2250,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ffe3a0e54c1fd3b49944c90c0c2cebc6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
