@@ -5028,6 +5028,31 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 388394993}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &393995848 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7805718941271248173, guid: e78d48eeb3ab9e741810493a05024376,
+    type: 3}
+  m_PrefabInstance: {fileID: 1337970067}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &393995851
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 393995848}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c2ff99055b43d6c4b82292f02f6ef8fc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &394913031
 GameObject:
   m_ObjectHideFlags: 0
@@ -17372,6 +17397,54 @@ Transform:
   m_Father: {fileID: 1419295832}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!1 &1285856065 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: e78d48eeb3ab9e741810493a05024376,
+    type: 3}
+  m_PrefabInstance: {fileID: 1337970067}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1285856067
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1285856065}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c2ff99055b43d6c4b82292f02f6ef8fc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1285856068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1285856065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 834de0f51fc7af84d86577f665a72a56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 1489147209010524249, guid: d87587582993f364f993dc0c0eed0ec6, type: 3}
+  ammoText: {fileID: 0}
+  muzzle: {fileID: 0}
+  maxDistance: 0
+  minDistance: 0
+  forcePush: 0
+  canFire: 1
+  chargeTime: 0
+  maxChargeTime: 5
+  clip: 3
+  ammoPool: 9
 --- !u!1 &1286446983
 GameObject:
   m_ObjectHideFlags: 0
