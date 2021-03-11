@@ -22,7 +22,7 @@ public class HologunBullet : MonoBehaviour
     {
         time = +Time.deltaTime;
 
-        if(time >= despawnTime)
+        if (time >= despawnTime)
         {
             Destroy(this.gameObject);
         }
@@ -30,16 +30,18 @@ public class HologunBullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if(other.gameObject.tag == "Ground")
+        if (other.gameObject.tag == "Ground")
         {
             newPosition = new Vector3(transform.position.x, transform.position.y + 0.6f, transform.position.z);
             player.transform.position = newPosition;
-            Destroy(this.gameObject);
+
+            gun.fired = false;
+            Destroy(this.gameObject, 5);
         }
     }
 
     private void OnDestroy()
     {
-        gun.fired = false;
+       // gun.fired = false;
     }
 }
