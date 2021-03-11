@@ -10,7 +10,7 @@ public class Hologun : MonoBehaviour
     public GameObject bullet;
     public Text ammoText;
     public Transform muzzle;
-    private Image chargeBar;
+    public Image chargeBar;
 
 
     public float maxDistance;
@@ -28,12 +28,6 @@ public class Hologun : MonoBehaviour
     int missingAmmo;
     float reloadTime = 0f;
     bool playReload = false;
-
-
-    private void Awake()
-    {
-        chargeBar = transform.Find("Bar").GetComponent<Image>();
-    }
 
     private void Start()
     {
@@ -54,18 +48,14 @@ public class Hologun : MonoBehaviour
         {
             chargeTime += Time.deltaTime;
             chargeBar.fillAmount = chargeTime / maxChargeTime;
+
             if (chargeTime > 2f)
             {
                 chargeTime = 2f;
             }
-
         }
-
         if (Input.GetButtonUp("Fire1")  && canFire )
         {
-
-           
-
             float percent = chargeTime / maxChargeTime;
 
             GameObject projectile = Instantiate(bullet, muzzle.position, muzzle.rotation);
@@ -77,6 +67,7 @@ public class Hologun : MonoBehaviour
 
             M471Animator.SetTrigger("Fire_02");
 
+            chargeBar.fillAmount = 0f;
             clip--;
             chargeTime = 0f;
             canFire = false;
