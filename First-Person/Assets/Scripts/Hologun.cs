@@ -17,7 +17,7 @@ public class Hologun : MonoBehaviour
     public float minChargeTime = 0.3f;
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         M471Animator = GetComponent<Animator>();
 
@@ -30,6 +30,7 @@ public class Hologun : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0) && !fired)
         {
+
             if (chargeTime > 2f)
             {
                 chargeTime = 2f;
@@ -77,10 +78,25 @@ public class Hologun : MonoBehaviour
         {
             M471Animator.SetBool("walk", true);
         }
-
         if (Input.GetButtonUp("Vertical"))
         {
             M471Animator.SetBool("walk", false);
+        }
+        if (Input.GetButtonDown("Fire1"))
+        {
+            M471Animator.SetTrigger("Fire_02");
+        }
+        if (Input.GetButtonUp("Fire1"))
+        {
+            M471Animator.ResetTrigger("Fire_02"); 
+        }
+        if (Input.GetKeyDown("left shift"))
+        {
+            M471Animator.SetBool("Sprint", true);
+        }
+        if (Input.GetKeyUp("left shift"))
+        {
+            M471Animator.SetBool("Sprint", false);
         }
     }
 
