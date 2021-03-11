@@ -17476,6 +17476,7 @@ Transform:
   m_Father: {fileID: 1419295832}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+<<<<<<< HEAD
 --- !u!1 &1285856065 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: e78d48eeb3ab9e741810493a05024376,
@@ -17501,6 +17502,8 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+=======
+>>>>>>> parent of c8ff6c7 (Merge branch 'main' of https://github.com/BenitezGD/DesignWeek into main)
 --- !u!1 &1286446983
 GameObject:
   m_ObjectHideFlags: 0
