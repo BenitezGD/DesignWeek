@@ -10,6 +10,9 @@ public class Hologun : MonoBehaviour
     public GameObject bullet;
     public Text ammoText;
     public Transform muzzle;
+    private Image chargeBar;
+
+
     public float maxDistance;
     public float minDistance;
     public float forcePush;
@@ -25,6 +28,12 @@ public class Hologun : MonoBehaviour
     int missingAmmo;
     float reloadTime = 0f;
     bool playReload = false;
+
+
+    private void Awake()
+    {
+        chargeBar = transform.Find("Bar").GetComponent<Image>();
+    }
 
     private void Start()
     {
@@ -44,15 +53,18 @@ public class Hologun : MonoBehaviour
         if (Input.GetButton("Fire1") && canFire)
         {
             chargeTime += Time.deltaTime;
+            chargeBar.fillAmount = chargeTime / maxChargeTime;
+            if (chargeTime > 2f)
+            {
+                chargeTime = 2f;
+            }
+
         }
 
         if (Input.GetButtonUp("Fire1")  && canFire )
         {
 
-            if (chargeTime > 2f)
-            {
-                chargeTime = 2f;
-            }
+           
 
             float percent = chargeTime / maxChargeTime;
 
