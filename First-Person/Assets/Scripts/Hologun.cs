@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Hologun : MonoBehaviour
 {
+    Animator M471Animator;
+
     public GameObject bullet;
     public Transform muzzle;
     public float speed;
@@ -14,10 +16,12 @@ public class Hologun : MonoBehaviour
     public float maxChargeTime = 5f;
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
+        M471Animator = GetComponent<Animator>();
+
         //Main Fire ----------------------------------------------------------------------------------
-        if(Input.GetMouseButton(0) && !fired)
+        if (Input.GetMouseButton(0) && !fired)
         {
             chargeTime += Time.deltaTime;
             Debug.Log(chargeTime);   
@@ -37,6 +41,10 @@ public class Hologun : MonoBehaviour
             pearl.player = this.transform.parent.parent.gameObject;
             pearl.gun = this;
             pearl.rb.AddForce(-transform.forward * speed * percent, ForceMode.Impulse);
+
+            M471Animator.SetTrigger("Fire_02");
+
+            M471Animator.ResetTrigger("BTI");
 
             chargeTime = 0f;
             fired = true;
@@ -63,6 +71,16 @@ public class Hologun : MonoBehaviour
             rb.AddForce(transform.forward * percent * forcePush, ForceMode.Impulse);
             
             chargeTime = 0;
+        }
+
+        if (Input.GetButtonDown("Vertical"))
+        {
+            M471Animator.SetBool("walk", true);
+        }
+
+        if (Input.GetButtonUp("Vertical"))
+        {
+            M471Animator.SetBool("walk", false);
         }
     }
 }
