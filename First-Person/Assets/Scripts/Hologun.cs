@@ -32,11 +32,15 @@ public class Hologun : MonoBehaviour
 
             float percent = chargeTime / maxChargeTime;
 
-            GameObject projectile = Instantiate(bullet, muzzle.position, muzzle.rotation);
-            HologunBullet pearl = projectile.GetComponent<HologunBullet>();
-            pearl.player = this.transform.parent.parent.gameObject;
-            pearl.gun = this;
-            pearl.rb.AddForce(-transform.forward * speed * percent, ForceMode.Impulse);
+            if (percent >= 0.30)
+            {
+                GameObject projectile = Instantiate(bullet, muzzle.position, muzzle.rotation);
+                HologunBullet pearl = projectile.GetComponent<HologunBullet>();
+                pearl.player = this.transform.parent.parent.gameObject;
+                pearl.gun = this;
+                pearl.rb.AddForce(-transform.forward * speed * percent, ForceMode.Impulse);
+            }
+            
 
             chargeTime = 0f;
             fired = true;
