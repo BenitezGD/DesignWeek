@@ -24,7 +24,7 @@ public class HologunBullet : MonoBehaviour
 
         if(time > despawnTime)
         {
-            gun.fired = false;
+            gun.canFire = true; ;
             Destroy(this.gameObject);
         }
     }
@@ -35,7 +35,7 @@ public class HologunBullet : MonoBehaviour
         {
             newPosition = new Vector3(transform.position.x, transform.position.y + 0.6f, transform.position.z);
             player.transform.position = newPosition;
-            gun.fired = false;
+            gun.canFire = true; ;
             Destroy(this.gameObject);
         }
     }
