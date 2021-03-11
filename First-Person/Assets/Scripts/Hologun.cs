@@ -12,6 +12,7 @@ public class Hologun : MonoBehaviour
 
     public float chargeTime = 0f;
     public float maxChargeTime = 5f;
+    public float minChargeTime = 0.3f;
 
     // Update is called once per frame
     void Update()
@@ -32,7 +33,7 @@ public class Hologun : MonoBehaviour
 
             float percent = chargeTime / maxChargeTime;
 
-            if (percent >= 0.30)
+            if (percent >= chargeMinTime)
             {
                 GameObject projectile = Instantiate(bullet, muzzle.position, muzzle.rotation);
                 HologunBullet pearl = projectile.GetComponent<HologunBullet>();
