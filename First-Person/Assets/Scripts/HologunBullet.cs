@@ -24,6 +24,9 @@ public class HologunBullet : MonoBehaviour
     [SerializeField]
     GameObject onTeleportEffect; //Create an effect when teleported to the target destination
 
+    [SerializeField]
+    GameObject ballHitMark;
+
 
     private void FixedUpdate()
     {
@@ -60,6 +63,13 @@ public class HologunBullet : MonoBehaviour
             GetComponent<MeshRenderer>().enabled = false;
 
             Destroy(this.gameObject, 5);
+        }
+
+        else
+        {
+            GameObject tempGameObject = Instantiate(ballHitMark, other.GetContact(0).point + other.GetContact(0).normal * 0.1f, ballHitMark.transform.rotation);
+
+            tempGameObject.transform.LookAt(other.GetContact(0).point + other.GetContact(0).normal);
         }
     }
 
