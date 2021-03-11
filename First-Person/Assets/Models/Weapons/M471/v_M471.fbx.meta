@@ -39,7 +39,62 @@ ModelImporter:
   - first:
       74: -7264356326966739861
     second: Rig|Walk
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bolt
+    second: {fileID: 2100000, guid: 2338a7e02abfd964bb2d7e2295beaea6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Copper
+    second: {fileID: 2100000, guid: 402c2215723be144f8fc80b630504ca2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Glove
+    second: {fileID: 2100000, guid: 74e5bb7397c580945a147aeb342c1bb6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Glow_01
+    second: {fileID: 2100000, guid: c03b37df925dff5409d103b438583625, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal_01
+    second: {fileID: 2100000, guid: 0430763da1c1c514894950e44a7364dc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal_02
+    second: {fileID: 2100000, guid: 062859f0d3b13f64c86a2dd53002c85c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Plymer_01
+    second: {fileID: 2100000, guid: 4d2d20eaf9cbcaf4e948cad97cb96b66, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Shell
+    second: {fileID: 2100000, guid: ca4949f8a8b093b4e9cbea059edd33e6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Skin
+    second: {fileID: 2100000, guid: 57d728290fe9ce3499abd42a95b0571b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Sleve_01
+    second: {fileID: 2100000, guid: 01f0b63a424d1e34eb4cc151f1e35be6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Sleve_02
+    second: {fileID: 2100000, guid: 46a88339cdbd1c04897a02dc22641a40, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
