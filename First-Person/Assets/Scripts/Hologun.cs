@@ -23,13 +23,12 @@ public class Hologun : MonoBehaviour
         M471Animator = GetComponent<Animator>();
 
         //Main Fire ----------------------------------------------------------------------------------
-        if (Input.GetMouseButton(0) && !fired)
+        if (Input.GetButton("Fire1") && !fired)
         {
             chargeTime += Time.deltaTime;
-            Debug.Log(chargeTime);
         }
 
-        if (Input.GetMouseButtonUp(0) && !fired)
+        if (Input.GetButtonUp("Fire1") && !fired)
         {
 
             if (chargeTime > 2f)
@@ -43,8 +42,11 @@ public class Hologun : MonoBehaviour
             HologunBullet pearl = projectile.GetComponent<HologunBullet>();
             pearl.player = this.transform.parent.parent.gameObject;
             pearl.gun = this;
-            pearl.rb.AddForce(-transform.forward * (minDistance + (maxDistance * percent)), ForceMode.Impulse);
+            pearl.rb.AddForce(transform.forward * (minDistance + (maxDistance * percent)), ForceMode.Impulse);
 
+
+            M471Animator.SetTrigger("Fire_02"); //<------------------------ Right Here
+            
             chargeTime = 0f;
             fired = true;
         }
@@ -53,7 +55,6 @@ public class Hologun : MonoBehaviour
         if (Input.GetMouseButton(1))
         {
             chargeTime += Time.deltaTime;
-            Debug.Log(chargeTime);
         }
 
         if (Input.GetMouseButtonUp(1))
@@ -67,7 +68,7 @@ public class Hologun : MonoBehaviour
 
             Rigidbody rb = this.transform.parent.parent.GetComponent<Rigidbody>();
 
-            rb.AddForce(transform.forward * percent * forcePush, ForceMode.Impulse);
+            rb.AddForce(-transform.forward * percent * forcePush, ForceMode.Impulse);
 
             chargeTime = 0;
         }
@@ -80,14 +81,7 @@ public class Hologun : MonoBehaviour
         {
             M471Animator.SetBool("walk", false);
         }
-        if (Input.GetButtonDown("Fire1"))
-        {
-            M471Animator.SetTrigger("Fire_02");
-        }
-        if (Input.GetButtonUp("Fire1"))
-        {
-            M471Animator.ResetTrigger("Fire_02"); 
-        }
+
         if (Input.GetKeyDown("left shift"))
         {
             M471Animator.SetBool("Sprint", true);
@@ -97,5 +91,4 @@ public class Hologun : MonoBehaviour
             M471Animator.SetBool("Sprint", false);
         }
     }
-
 }
