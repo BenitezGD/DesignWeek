@@ -24,6 +24,7 @@ public class Hologun : MonoBehaviour
     bool reloading = false;
     int missingAmmo;
     float reloadTime = 0f;
+    bool playReload = false;
 
     private void Start()
     {
@@ -98,12 +99,18 @@ public class Hologun : MonoBehaviour
             reloading = true;
             missingAmmo = 3 - clip;
             canFire = false;
+            //RELOAD START ANIMATION
         }
 
         //reload sequence
         if(reloading)
         {
             reloadTime += Time.deltaTime; //reloadTime adjusts the time between inserting shells
+
+            if(playReload == true)
+            {
+                //RELOAD LOOP ANIMATION
+            }
 
             if(reloadTime > 3f) //change this to how long the reload animation takes
             {
@@ -116,6 +123,9 @@ public class Hologun : MonoBehaviour
             {
                 reloading = false;
                 canFire = true;
+                playReload = false;
+                //RELOAD FINISH ANIMATION
+
             }
         }
 
