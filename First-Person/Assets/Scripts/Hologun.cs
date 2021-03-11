@@ -16,6 +16,8 @@ public class Hologun : MonoBehaviour
     public float chargeTime = 0f;
     public float maxChargeTime = 5f;
 
+    [SerializeField]
+    GameObject gunShotEffect;
 
     // Update is called once per frame
     void Update()
@@ -39,6 +41,9 @@ public class Hologun : MonoBehaviour
             float percent = chargeTime / maxChargeTime;
 
             GameObject projectile = Instantiate(bullet, muzzle.position, muzzle.rotation);
+
+            gunShotEffect.GetComponent<ParticleSystem>().Play();
+
             HologunBullet pearl = projectile.GetComponent<HologunBullet>();
             pearl.player = this.transform.parent.parent.gameObject;
             pearl.gun = this;
@@ -91,4 +96,6 @@ public class Hologun : MonoBehaviour
             M471Animator.SetBool("Sprint", false);
         }
     }
+
+  
 }
