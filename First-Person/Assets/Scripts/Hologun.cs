@@ -105,7 +105,7 @@ public class Hologun : MonoBehaviour
         {
             reloadTime += Time.deltaTime; //reloadTime adjusts the time between inserting shells
 
-            if(reloadTime > 3f) //change this to how long the reload animation takes
+            if(reloadTime > 0.125f) //change this to how long the reload animation takes
             {
                 clip++;
                 missingAmmo--;
