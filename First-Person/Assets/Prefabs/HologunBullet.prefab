@@ -125,5 +125,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 100006, guid: c6453f8e1f814744d8b94e5a6d1f9942, type: 3}
   gun: {fileID: 0}
+  despawnTime: 5
   rb: {fileID: 1489147209010524251}
   gravity: 2.5
