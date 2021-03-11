@@ -129,6 +129,12 @@ MonoBehaviour:
   despawnTime: 5
   rb: {fileID: 1489147209010524251}
   gravity: 2.5
+  teleportTargetEffect: {fileID: 2233280699876578982, guid: 5b07f61130532a14aaac18b2a95e636e,
+    type: 3}
+  teleportTargetEffectGroundOffset: -0.25
+  teleportDelay: 0.5
+  onTeleportEffect: {fileID: 7171281708563137979, guid: 55c9eb9de31d31e4089fee06553e2c91,
+    type: 3}
 --- !u!96 &-3221547798027830843
 TrailRenderer:
   serializedVersion: 2
