@@ -25,7 +25,7 @@ public class Hologun : MonoBehaviour
         if (Input.GetMouseButton(0) && !fired)
         {
             chargeTime += Time.deltaTime;
-            Debug.Log(chargeTime);   
+            Debug.Log(chargeTime);
         }
 
         if (Input.GetMouseButtonUp(0) && !fired)
@@ -45,20 +45,21 @@ public class Hologun : MonoBehaviour
                 pearl.gun = this;
                 pearl.rb.AddForce(-transform.forward * speed * percent, ForceMode.Impulse);
 
-            chargeTime = 0f;
-            fired = true;
+                chargeTime = 0f;
+                fired = true;
+            }
         }
 
         //ALT Fire ----------------------------------------------------------------------------------------
-        if(Input.GetMouseButton(1))
+        if (Input.GetMouseButton(1))
         {
             chargeTime += Time.deltaTime;
             Debug.Log(chargeTime);
         }
 
-        if(Input.GetMouseButtonUp(1))
+        if (Input.GetMouseButtonUp(1))
         {
-            if(chargeTime > 2f)
+            if (chargeTime > 2f)
             {
                 chargeTime = 2f;
             }
@@ -68,7 +69,7 @@ public class Hologun : MonoBehaviour
             Rigidbody rb = this.transform.parent.parent.GetComponent<Rigidbody>();
 
             rb.AddForce(transform.forward * percent * forcePush, ForceMode.Impulse);
-            
+
             chargeTime = 0;
         }
 
@@ -82,4 +83,5 @@ public class Hologun : MonoBehaviour
             M471Animator.SetBool("walk", false);
         }
     }
+
 }
