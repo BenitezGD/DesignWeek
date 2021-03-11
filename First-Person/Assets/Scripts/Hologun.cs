@@ -25,7 +25,7 @@ public class Hologun : MonoBehaviour
     int missingAmmo;
     float reloadTime = 0f;
 
-    private void Start()
+    public void Start()
     {
         M471Animator = GetComponent<Animator>();
     }
