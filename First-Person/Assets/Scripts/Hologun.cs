@@ -1,34 +1,51 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Hologun : MonoBehaviour
 {
     Animator M471Animator;
 
     public GameObject bullet;
+    public Text ammoText;
     public Transform muzzle;
-    public float speed;
+    public float maxDistance;
+    public float minDistance;
     public float forcePush;
-    public bool fired = false;
+    public bool canFire = true;
 
     public float chargeTime = 0f;
     public float maxChargeTime = 5f;
-    public float minChargeTime = 0.3f;
+
+    public int clip = 3;
+    public int ammoPool = 9;
+
+    bool reloading = false;
+    int missingAmmo;
+    float reloadTime = 0f;
+
+    private void Start()
+    {
+        M471Animator = GetComponent<Animator>();
+    }
 
     // Update is called once per frame
     void Update()
     {
-        M471Animator = GetComponent<Animator>();
-
-        //Main Fire ----------------------------------------------------------------------------------
-        if (Input.GetMouseButton(0) && !fired)
+        //Check if there is ammo in clip
+        if(clip == 0)
         {
-            chargeTime += Time.deltaTime;
-            Debug.Log(chargeTime);
+            canFire = false;
         }
 
-        if (Input.GetMouseButtonUp(0) && !fired)
+        //Main Fire ----------------------------------------------------------------------------------
+        if (Input.GetButton("Fire1") && canFire)
+        {
+            chargeTime += Time.deltaTime;
+        }
+
+        if (Input.GetButtonUp("Fire1")  && canFire )
         {
 
             if (chargeTime > 2f)
@@ -38,24 +55,24 @@ public class Hologun : MonoBehaviour
 
             float percent = chargeTime / maxChargeTime;
 
-            if (percent >= minChargeTime)
-            {
-                GameObject projectile = Instantiate(bullet, muzzle.position, muzzle.rotation);
-                HologunBullet pearl = projectile.GetComponent<HologunBullet>();
-                pearl.player = this.transform.parent.parent.gameObject;
-                pearl.gun = this;
-                pearl.rb.AddForce(-transform.forward * speed * percent, ForceMode.Impulse);
+            GameObject projectile = Instantiate(bullet, muzzle.position, muzzle.rotation);
+            HologunBullet pearl = projectile.GetComponent<HologunBullet>();
+            pearl.player = this.transform.parent.parent.gameObject;
+            pearl.gun = this;
+            pearl.rb.AddForce(transform.forward * (minDistance + (maxDistance * percent)), ForceMode.Impulse);
 
-                chargeTime = 0f;
-                fired = true;
-            }
+
+            M471Animator.SetTrigger("Fire_02");
+
+            clip--;
+            chargeTime = 0f;
+            canFire = false;
         }
 
-        //ALT Fire ----------------------------------------------------------------------------------------
+        //ALT Fire -----------------------------------------------------------------------------------
         if (Input.GetMouseButton(1))
         {
             chargeTime += Time.deltaTime;
-            Debug.Log(chargeTime);
         }
 
         if (Input.GetMouseButtonUp(1))
@@ -69,11 +86,47 @@ public class Hologun : MonoBehaviour
 
             Rigidbody rb = this.transform.parent.parent.GetComponent<Rigidbody>();
 
-            rb.AddForce(transform.forward * percent * forcePush, ForceMode.Impulse);
+            rb.AddForce(-transform.forward * percent * forcePush, ForceMode.Impulse);
 
             chargeTime = 0;
         }
 
+        //Reload -------------------------------------------------------------------------------------
+        //Starts the reload sequence
+        if(Input.GetKeyUp("r") && clip < 3 && !reloading)
+        {
+            reloading = true;
+            missingAmmo = 3 - clip;
+            canFire = false;
+        }
+
+        //reload sequence
+        if(reloading)
+        {
+            reloadTime += Time.deltaTime; //reloadTime adjusts the time between inserting shells
+
+            if(reloadTime > 3f) //change this to how long the reload animation takes
+            {
+                clip++;
+                missingAmmo--;
+                reloadTime = 0f;
+            }
+
+            if (missingAmmo == 0)
+            {
+                reloading = false;
+                canFire = true;
+            }
+        }
+
+
+
+
+        //Update UI
+        ammoText.text = clip + "";
+
+
+        //Animations ---------------------------------------------------------------------------------
         if (Input.GetButtonDown("Vertical"))
         {
             M471Animator.SetBool("walk", true);
@@ -81,14 +134,6 @@ public class Hologun : MonoBehaviour
         if (Input.GetButtonUp("Vertical"))
         {
             M471Animator.SetBool("walk", false);
-        }
-        if (Input.GetButtonDown("Fire1"))
-        {
-            M471Animator.SetTrigger("Fire_02");
-        }
-        if (Input.GetButtonUp("Fire1"))
-        {
-            M471Animator.ResetTrigger("Fire_02"); 
         }
         if (Input.GetKeyDown("left shift"))
         {
@@ -99,5 +144,4 @@ public class Hologun : MonoBehaviour
             M471Animator.SetBool("Sprint", false);
         }
     }
-
 }
