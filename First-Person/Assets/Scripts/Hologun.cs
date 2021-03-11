@@ -8,13 +8,14 @@ public class Hologun : MonoBehaviour
 
     public GameObject bullet;
     public Transform muzzle;
-    public float speed;
+    public float maxDistance;
+    public float minDistance;
     public float forcePush;
     public bool fired = false;
 
     public float chargeTime = 0f;
     public float maxChargeTime = 5f;
-    public float minChargeTime = 0.3f;
+
 
     // Update is called once per frame
     void Update()
@@ -38,17 +39,14 @@ public class Hologun : MonoBehaviour
 
             float percent = chargeTime / maxChargeTime;
 
-            if (percent >= minChargeTime)
-            {
-                GameObject projectile = Instantiate(bullet, muzzle.position, muzzle.rotation);
-                HologunBullet pearl = projectile.GetComponent<HologunBullet>();
-                pearl.player = this.transform.parent.parent.gameObject;
-                pearl.gun = this;
-                pearl.rb.AddForce(-transform.forward * speed * percent, ForceMode.Impulse);
+            GameObject projectile = Instantiate(bullet, muzzle.position, muzzle.rotation);
+            HologunBullet pearl = projectile.GetComponent<HologunBullet>();
+            pearl.player = this.transform.parent.parent.gameObject;
+            pearl.gun = this;
+            pearl.rb.AddForce(-transform.forward * (minDistance + (maxDistance * percent)), ForceMode.Impulse);
 
-                chargeTime = 0f;
-                fired = true;
-            }
+            chargeTime = 0f;
+            fired = true;
         }
 
         //ALT Fire ----------------------------------------------------------------------------------------

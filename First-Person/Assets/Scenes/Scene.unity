@@ -2554,7 +2554,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 1489147209010524249, guid: d87587582993f364f993dc0c0eed0ec6, type: 3}
   muzzle: {fileID: 744897894}
-  speed: 150
+  maxDistance: 105
+  minDistance: 30
   forcePush: 150
   fired: 0
   chargeTime: 0
