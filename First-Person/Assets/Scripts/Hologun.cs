@@ -20,6 +20,9 @@ public class Hologun : MonoBehaviour
 
     public int clip = 3;
     public int ammoPool = 9;
+    
+    [SerializeField]
+    GameObject gunShotEffect;
 
     bool reloading = false;
     int missingAmmo;
@@ -56,6 +59,9 @@ public class Hologun : MonoBehaviour
             float percent = chargeTime / maxChargeTime;
 
             GameObject projectile = Instantiate(bullet, muzzle.position, muzzle.rotation);
+
+            gunShotEffect.GetComponent<ParticleSystem>().Play();
+
             HologunBullet pearl = projectile.GetComponent<HologunBullet>();
             pearl.player = this.transform.parent.parent.gameObject;
             pearl.gun = this;
@@ -148,4 +154,6 @@ public class Hologun : MonoBehaviour
             M471Animator.SetBool("Sprint", false);
         }
     }
+
+  
 }
