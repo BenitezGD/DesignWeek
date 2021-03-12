@@ -103,7 +103,7 @@ public class Hologun : MonoBehaviour
 
             Rigidbody rb = this.transform.parent.parent.GetComponent<Rigidbody>();
             rb.AddForce(-transform.forward * (minPush + (percent * maxPush)), ForceMode.Impulse);
-            M471Animator.SetTrigger("Fire_02");
+            M471Animator.SetTrigger("ALT_Fire_01");
 
             chargeTime = 0;
             canFirePush = false;
@@ -138,7 +138,7 @@ public class Hologun : MonoBehaviour
         {
             reloadTime += Time.deltaTime; //reloadTime adjusts the time between inserting shells
 
-            if(reloadTime > 1f) //change this to how long the reload animation takes
+            if(reloadTime > 0.125f) //change this to how long the reload animation takes
             {
                 M471Animator.SetTrigger("Reload_01C");
                 clip++;
