@@ -95,6 +95,8 @@ public class Hologun : MonoBehaviour
         //Starts the reload sequence
         if(Input.GetKeyUp("r") && clip < 3 && !reloading)
         {
+            M471Animator.SetTrigger("Reload_01A");
+
             reloading = true;
             missingAmmo = 3 - clip;
             canFire = false;
@@ -105,8 +107,9 @@ public class Hologun : MonoBehaviour
         {
             reloadTime += Time.deltaTime; //reloadTime adjusts the time between inserting shells
 
-            if(reloadTime > 0.125f) //change this to how long the reload animation takes
+            if(reloadTime > 1f) //change this to how long the reload animation takes
             {
+                M471Animator.SetTrigger("Reload_01C");
                 clip++;
                 missingAmmo--;
                 reloadTime = 0f;
@@ -114,8 +117,11 @@ public class Hologun : MonoBehaviour
 
             if (missingAmmo == 0)
             {
+                M471Animator.ResetTrigger("Reload_01B");
+                M471Animator.SetTrigger("Reload_01C");
                 reloading = false;
                 canFire = true;
+                M471Animator.SetTrigger("Inspect");
             }
         }
 
