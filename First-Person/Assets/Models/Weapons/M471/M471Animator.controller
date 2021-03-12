@@ -402,25 +402,25 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: BTI
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: walk
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Sprint
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -562,8 +562,7 @@ AnimatorState:
   m_Name: Rig_Idel_01
   m_Speed: 1
   m_CycleOffset: 0
-  m_Transitions:
-  - {fileID: -6940135113229231500}
+  m_Transitions: []
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
@@ -814,23 +813,10 @@ AnimatorStateMachine:
   m_Name: Base Layer
   m_ChildStates:
   - serializedVersion: 1
-    m_State: {fileID: 4103134167134187301}
-    m_Position: {x: 430, y: -110, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: 2042341938004477334}
-    m_Position: {x: -40, y: -160, z: 0}
-  - serializedVersion: 1
     m_State: {fileID: 5343314746485283073}
     m_Position: {x: 350, y: 130, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: 8220863555764007262}
-    m_Position: {x: 0, y: 40, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: 7199381822044351402}
-    m_Position: {x: 360, y: 0, z: 0}
   m_ChildStateMachines: []
-  m_AnyStateTransitions:
-  - {fileID: 5730970065107451195}
+  m_AnyStateTransitions: []
   m_EntryTransitions:
   - {fileID: 4780169558056858471}
   m_StateMachineTransitions: {}
