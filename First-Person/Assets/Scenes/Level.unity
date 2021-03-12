@@ -3352,9 +3352,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 290546839}
   m_LocalRotation: {x: -0, y: -0.77776086, z: -0, w: -0.6285603}
-  m_LocalPosition: {x: 0.054, y: -0.063, z: 0.82}
+  m_LocalPosition: {x: 0.082, y: -0.063, z: 0.952}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 605585152}
   m_Father: {fileID: 543450652395874936}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5330,6 +5331,75 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 433552105}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &452905112
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 290546840}
+    m_Modifications:
+    - target: {fileID: 551682457744900454, guid: cdf0dd33758d5cc4f9ab4224c2b51d9f,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 551682457744900454, guid: cdf0dd33758d5cc4f9ab4224c2b51d9f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.329
+      objectReference: {fileID: 0}
+    - target: {fileID: 551682457744900454, guid: cdf0dd33758d5cc4f9ab4224c2b51d9f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 551682457744900454, guid: cdf0dd33758d5cc4f9ab4224c2b51d9f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 551682457744900454, guid: cdf0dd33758d5cc4f9ab4224c2b51d9f,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 551682457744900454, guid: cdf0dd33758d5cc4f9ab4224c2b51d9f,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 551682457744900454, guid: cdf0dd33758d5cc4f9ab4224c2b51d9f,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 551682457744900454, guid: cdf0dd33758d5cc4f9ab4224c2b51d9f,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 551682457744900454, guid: cdf0dd33758d5cc4f9ab4224c2b51d9f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 551682457744900454, guid: cdf0dd33758d5cc4f9ab4224c2b51d9f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 551682457744900454, guid: cdf0dd33758d5cc4f9ab4224c2b51d9f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 551682457744900473, guid: cdf0dd33758d5cc4f9ab4224c2b51d9f,
+        type: 3}
+      propertyPath: m_Name
+      value: Gun FIre Effect
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cdf0dd33758d5cc4f9ab4224c2b51d9f, type: 3}
 --- !u!1 &456700435
 GameObject:
   m_ObjectHideFlags: 0
@@ -7354,6 +7424,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 602378385}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &605585151 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 551682457744900473, guid: cdf0dd33758d5cc4f9ab4224c2b51d9f,
+    type: 3}
+  m_PrefabInstance: {fileID: 452905112}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &605585152 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 551682457744900454, guid: cdf0dd33758d5cc4f9ab4224c2b51d9f,
+    type: 3}
+  m_PrefabInstance: {fileID: 452905112}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &609164512
 GameObject:
   m_ObjectHideFlags: 0
@@ -31781,14 +31863,17 @@ MonoBehaviour:
   bullet: {fileID: 1489147209010524249, guid: d87587582993f364f993dc0c0eed0ec6, type: 3}
   ammoText: {fileID: 1148457115}
   muzzle: {fileID: 290546840}
+  chargeBar: {fileID: 0}
   maxDistance: 100
   minDistance: 30
-  forcePush: 75
+  minPush: 0
+  maxPush: 0
   canFire: 1
   chargeTime: 0
   maxChargeTime: 2
   clip: 3
   ammoPool: 9
+  gunShotEffect: {fileID: 605585151}
 --- !u!114 &919132148210004164
 MonoBehaviour:
   m_ObjectHideFlags: 0
