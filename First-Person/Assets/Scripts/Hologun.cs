@@ -99,10 +99,6 @@ public class Hologun : MonoBehaviour
             reloading = true;
             missingAmmo = 3 - clip;
             canFire = false;
-<<<<<<< HEAD
-            
-=======
->>>>>>> parent of 1f5db87 (Merge branch 'main' of https://github.com/BenitezGD/DesignWeek into main)
         }
 
         //reload sequence
