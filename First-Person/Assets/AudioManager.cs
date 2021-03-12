@@ -6,21 +6,47 @@ public class AudioManager : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    public Sound[] sounds;
+    public AudioSource nightStalker;
+    public AudioSource LKM;
+    public AudioSource GME;
+    public AudioSource somethingSecret;
 
-    void Awake()
+
+
+
+
+    private void OnTriggerEnter(Collider other)
     {
-        foreach (Sound s in sounds)
+        if(other.gameObject.name == "Trigger1")
         {
-            s.source = gameObject.AddComponent<AudioSource>();
-            s.source.clip = s.clip;
-            s.source.volume = s.volume;
+            GME.Play();
+            LKM.Stop();
+            nightStalker.Stop();
+            somethingSecret.Stop();
+        }
+
+        if(other.gameObject.name == "Trigger2")
+        {
+            GME.Stop();
+            LKM.Play();
+            nightStalker.Stop();
+            somethingSecret.Stop();
+        }
+
+        if (other.gameObject.name == "Trigger3")
+        {
+            GME.Stop();
+            LKM.Stop();
+            nightStalker.Play();
+            somethingSecret.Stop();
+        }
+        
+        if (other.gameObject.name == "Trigger4")
+        {
+            GME.Stop();
+            LKM.Stop();
+            nightStalker.Stop();
+            somethingSecret.Play();
         }
     }
-
-    public void Play (string name)
-        {
-        Sound s = Array.Find(sounds, Sound => Sound.name == name);
-        s.source.Play();
-        }
 }
