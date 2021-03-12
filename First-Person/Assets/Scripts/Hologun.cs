@@ -99,7 +99,6 @@ public class Hologun : MonoBehaviour
         if(Input.GetKeyUp("r") && clip < 3 && !reloading)
         {
             M471Animator.SetTrigger("Reload_01A");
-
             reloading = true;
             missingAmmo = 3 - clip;
             canFire = false;
