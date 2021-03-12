@@ -56,16 +56,13 @@ public class Hologun : MonoBehaviour
         if (Input.GetButton("Fire1") && canFire)
         {
             chargeTime += Time.deltaTime;
-        }
-
-        if (Input.GetButtonUp("Fire1")  && canFire )
-        {
+            chargeBar.fillAmount = chargeTime / maxChargeTime;
 
             if (chargeTime > 2f)
             {
                 chargeTime = 2f;
             }
-        }
+        } 
 
         if (Input.GetButtonUp("Fire1")  && canFire )
         {
@@ -82,7 +79,7 @@ public class Hologun : MonoBehaviour
 
             M471Animator.SetTrigger("Fire_02");
 
-            //chargeBar.fillAmount = 0;
+            chargeBar.fillAmount = 0;
             clip--;
             chargeTime = 0f;
             canFire = false;
@@ -118,6 +115,12 @@ public class Hologun : MonoBehaviour
             Debug.Log(cooldown);
 
             chargeTime = 0;
+
+            if(cooldown >= 3)
+            {
+                canFirePush = true;
+                cooldown = 0;
+            }
         }
 
         //Reload -------------------------------------------------------------------------------------
