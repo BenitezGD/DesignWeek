@@ -11,6 +11,7 @@ public class Hologun : MonoBehaviour
     AudioManager M471AudioManager;
 
     public GameObject bullet;
+    public Text reloadText;
     public Text ammoText;
     public Transform muzzle;
     public Image chargeBar;
@@ -50,6 +51,13 @@ public class Hologun : MonoBehaviour
         if(clip == 0)
         {
             canFire = false;
+            reloadText.gameObject.SetActive(true);
+
+        }
+
+        else
+        {
+            reloadText.gameObject.SetActive(false);
         }
 
         //Main Fire ----------------------------------------------------------------------------------
@@ -105,6 +113,7 @@ public class Hologun : MonoBehaviour
             rb.AddForce(-transform.forward * (minPush + (percent * maxPush)), ForceMode.Impulse);
             M471Animator.SetTrigger("ALT_Fire_01");
 
+            chargeBar.fillAmount = 0;
             chargeTime = 0;
             canFirePush = false;
         }
@@ -129,7 +138,6 @@ public class Hologun : MonoBehaviour
         {
             M471Animator.SetTrigger("Reload_01A");
             reloading = true;
-            missingAmmo = 3 - clip;
             canFire = false;
         }
 
@@ -138,19 +146,13 @@ public class Hologun : MonoBehaviour
         {
             reloadTime += Time.deltaTime; //reloadTime adjusts the time between inserting shells
 
-            if(reloadTime > 0.125f) //change this to how long the reload animation takes
+            if(reloadTime > 1f) //change this to how long the reload animation takes
             {
-                M471Animator.SetTrigger("Reload_01C");
-                clip++;
-                missingAmmo--;
+                clip = 3;
                 reloadTime = 0f;
-            }
-
-            if (missingAmmo == 0)
-            {
                 reloading = false;
                 canFire = true;
-            }
+            }   
         }
 
 
