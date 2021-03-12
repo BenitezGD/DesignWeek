@@ -14,8 +14,12 @@ public class Hologun : MonoBehaviour
 
     public float maxDistance;
     public float minDistance;
-    public float forcePush;
+    public float minPush;
+    public float maxPush;
     public bool canFire = true;
+
+    private bool canFirePush = true;
+    private float cooldown = 0;
 
     public float chargeTime = 0f;
     public float maxChargeTime = 5f;
@@ -78,30 +82,44 @@ public class Hologun : MonoBehaviour
         }
 
         //ALT Fire -----------------------------------------------------------------------------------
-        if (Input.GetMouseButton(1))
+        if (Input.GetMouseButton(1) && canFirePush)
         {
             chargeTime += Time.deltaTime;
-        }
+            chargeBar.fillAmount = chargeTime / maxChargeTime;
 
-        if (Input.GetMouseButtonUp(1))
-        {
-            if (chargeTime > 2f)
+            if(chargeTime > 2f)
             {
                 chargeTime = 2f;
             }
+        }
 
+        if (Input.GetMouseButtonUp(1) && canFirePush)
+        { 
             float percent = chargeTime / maxChargeTime;
 
             Rigidbody rb = this.transform.parent.parent.GetComponent<Rigidbody>();
-
-            rb.AddForce(-transform.forward * percent * forcePush, ForceMode.Impulse);
+            rb.AddForce(-transform.forward * (minPush + (percent * maxPush)), ForceMode.Impulse);
+            M471Animator.SetTrigger("Fire_02");
 
             chargeTime = 0;
+            canFirePush = false;
+        }
+
+        if (!canFirePush)
+        {
+            cooldown += Time.deltaTime;
+            Debug.Log(cooldown);
+
+            if (cooldown > 3f)
+            {
+                canFirePush = true;
+                cooldown = 0;
+            }
         }
 
         //Reload -------------------------------------------------------------------------------------
         //Starts the reload sequence
-        if(Input.GetKeyUp("r") && clip < 3 && !reloading)
+        if (Input.GetKeyUp("r") && clip < 3 && !reloading)
         {
             M471Animator.SetTrigger("Reload_01A");
             reloading = true;
@@ -114,7 +132,7 @@ public class Hologun : MonoBehaviour
         {
             reloadTime += Time.deltaTime; //reloadTime adjusts the time between inserting shells
 
-            if(reloadTime > 1f) //change this to how long the reload animation takes
+            if(reloadTime > 0.25f) //change this to how long the reload animation takes
             {
                 M471Animator.SetTrigger("Reload_01C");
                 clip++;
