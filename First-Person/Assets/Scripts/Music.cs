@@ -1,6 +1,7 @@
 ﻿using UnityEngine.Audio;
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Music : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class Music : MonoBehaviour
     public AudioSource LKM;
     public AudioSource GME;
     public AudioSource somethingSecret;
+
+    public Image hl; 
 
     private void OnTriggerEnter(Collider other)
     {
@@ -43,6 +46,7 @@ public class Music : MonoBehaviour
             LKM.Stop();
             nightStalker.Stop();
             somethingSecret.Play();
+            hl.gameObject.SetActive(true);
         }
     }
 }
