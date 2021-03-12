@@ -101,6 +101,7 @@ public class Hologun : MonoBehaviour
             reloading = true;
             missingAmmo = 3 - clip;
             canFire = false;
+            //RELOAD START ANIMATION
         }
 
         //reload sequence
@@ -110,6 +111,7 @@ public class Hologun : MonoBehaviour
 
             if(reloadTime > 0.125f) //change this to how long the reload animation takes
             {
+                //RELOAD LOOP ANIMATION
                 clip++;
                 missingAmmo--;
                 reloadTime = 0f;
@@ -117,6 +119,7 @@ public class Hologun : MonoBehaviour
 
             if (missingAmmo == 0)
             {
+                //RELOAD FINISH ANIMATION
                 reloading = false;
                 canFire = true;
             }
