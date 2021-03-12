@@ -82,7 +82,7 @@ public class Hologun : MonoBehaviour
 
             M471Animator.SetTrigger("Fire_02");
 
-            //chargeBar.fillAmount = 0;
+            chargeBar.fillAmount = 0;
             clip--;
             chargeTime = 0f;
             canFire = false;
