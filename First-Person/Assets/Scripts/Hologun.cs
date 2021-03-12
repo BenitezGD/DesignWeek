@@ -5,7 +5,10 @@ using UnityEngine.UI;
 
 public class Hologun : MonoBehaviour
 {
+
     Animator M471Animator;
+
+    AudioManager M471AudioManager;
 
     public GameObject bullet;
     public Text ammoText;
@@ -28,6 +31,7 @@ public class Hologun : MonoBehaviour
     public void Start()
     {
         M471Animator = GetComponent<Animator>();
+        M471AudioManager = GetComponent<AudioManager>();
     }
 
     // Update is called once per frame
@@ -45,6 +49,11 @@ public class Hologun : MonoBehaviour
             chargeTime += Time.deltaTime;
         }
 
+        if (Input.GetButtonDown("Fire1"))
+        {
+//            M471AudioManager.Play("M471_Charge");
+        }
+
         if (Input.GetButtonUp("Fire1")  && canFire )
         {
 
@@ -60,7 +69,6 @@ public class Hologun : MonoBehaviour
             pearl.player = this.transform.parent.parent.gameObject;
             pearl.gun = this;
             pearl.rb.AddForce(transform.forward * (minDistance + (maxDistance * percent)), ForceMode.Impulse);
-
 
             M471Animator.SetTrigger("Fire_02");
 
@@ -88,6 +96,8 @@ public class Hologun : MonoBehaviour
 
             rb.AddForce(-transform.forward * percent * forcePush, ForceMode.Impulse);
 
+            M471Animator.SetTrigger("ALT_Fire_01");
+
             chargeTime = 0;
         }
 
@@ -106,7 +116,7 @@ public class Hologun : MonoBehaviour
         {
             reloadTime += Time.deltaTime; //reloadTime adjusts the time between inserting shells
 
-            if(reloadTime > 1f) //change this to how long the reload animation takes
+            if(reloadTime > 0.125f) //change this to how long the reload animation takes
             {
                 M471Animator.SetTrigger("Reload_01C");
                 clip++;
@@ -116,8 +126,6 @@ public class Hologun : MonoBehaviour
 
             if (missingAmmo == 0)
             {
-                M471Animator.ResetTrigger("Reload_01B");
-                M471Animator.SetTrigger("Reload_01C");
                 reloading = false;
                 canFire = true;
             }
@@ -146,6 +154,10 @@ public class Hologun : MonoBehaviour
         if (Input.GetKeyUp("left shift"))
         {
             M471Animator.SetBool("Sprint", false);
+        }
+        if (Input.GetKey("k"))
+        {
+            M471Animator.SetTrigger("Inspect");
         }
     }
 }
