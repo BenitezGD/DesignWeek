@@ -53,7 +53,7 @@ public class HologunBullet : MonoBehaviour
 
             StartCoroutine(TeleportCoroutine());
 
-            gun.canFire = false;
+            gun.canFire = true;
 
             GameObject tempEffect = Instantiate(teleportTargetEffect, other.GetContact(0).point + other.GetContact(0).normal * teleportTargetEffectGroundOffset, teleportTargetEffect.transform.rotation);
 
@@ -63,7 +63,7 @@ public class HologunBullet : MonoBehaviour
             GetComponent<Rigidbody>().isKinematic = true;
             GetComponent<MeshRenderer>().enabled = false;
 
-            Destroy(this.gameObject, 5);
+            Destroy(this.gameObject, 2);
         }
 
         else
@@ -72,11 +72,6 @@ public class HologunBullet : MonoBehaviour
 
             tempGameObject.transform.LookAt(other.GetContact(0).point + other.GetContact(0).normal);
         }
-    }
-
-    private void OnDestroy()
-    {
-        // gun.fired = false;
     }
 
     IEnumerator TeleportCoroutine()
