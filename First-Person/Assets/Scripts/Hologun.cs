@@ -103,7 +103,7 @@ public class Hologun : MonoBehaviour
             reloading = true;
             missingAmmo = 3 - clip;
             canFire = false;
-            //RELOAD START ANIMATION
+            
         }
 
         //reload sequence
@@ -123,7 +123,6 @@ public class Hologun : MonoBehaviour
             {
                 reloading = false;
                 canFire = true;
-                M471Animator.SetTrigger("Inspect");
             }
         }
 
