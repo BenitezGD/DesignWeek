@@ -13,16 +13,25 @@ public class Hologun : MonoBehaviour
     public GameObject bullet;
     public Text ammoText;
     public Transform muzzle;
+    public Image chargeBar;
+
     public float maxDistance;
     public float minDistance;
-    public float forcePush;
+    public float minPush;
+    public float maxPush;
     public bool canFire = true;
+
+    private bool canFirePush = true;
+    private float cooldown = 0;
 
     public float chargeTime = 0f;
     public float maxChargeTime = 5f;
 
     public int clip = 3;
     public int ammoPool = 9;
+    
+    [SerializeField]
+    GameObject gunShotEffect;
 
     bool reloading = false;
     int missingAmmo;
@@ -49,11 +58,6 @@ public class Hologun : MonoBehaviour
             chargeTime += Time.deltaTime;
         }
 
-        if (Input.GetButtonDown("Fire1"))
-        {
-//            M471AudioManager.Play("M471_Charge");
-        }
-
         if (Input.GetButtonUp("Fire1")  && canFire )
         {
 
@@ -61,10 +65,16 @@ public class Hologun : MonoBehaviour
             {
                 chargeTime = 2f;
             }
+        }
 
+        if (Input.GetButtonUp("Fire1")  && canFire )
+        {
             float percent = chargeTime / maxChargeTime;
 
             GameObject projectile = Instantiate(bullet, muzzle.position, muzzle.rotation);
+
+            gunShotEffect.GetComponent<ParticleSystem>().Play();
+
             HologunBullet pearl = projectile.GetComponent<HologunBullet>();
             pearl.player = this.transform.parent.parent.gameObject;
             pearl.gun = this;
@@ -72,38 +82,47 @@ public class Hologun : MonoBehaviour
 
             M471Animator.SetTrigger("Fire_02");
 
+            chargeBar.fillAmount = 0;
             clip--;
             chargeTime = 0f;
             canFire = false;
         }
 
         //ALT Fire -----------------------------------------------------------------------------------
-        if (Input.GetMouseButton(1))
+        if (Input.GetMouseButton(1) && canFirePush)
         {
             chargeTime += Time.deltaTime;
-        }
+            chargeBar.fillAmount = chargeTime / maxChargeTime;
 
-        if (Input.GetMouseButtonUp(1))
-        {
-            if (chargeTime > 2f)
+            if(chargeTime > 2f)
             {
                 chargeTime = 2f;
             }
+        }
 
+        if (Input.GetMouseButtonUp(1) && canFirePush)
+        { 
             float percent = chargeTime / maxChargeTime;
 
             Rigidbody rb = this.transform.parent.parent.GetComponent<Rigidbody>();
+            rb.AddForce(-transform.forward * (minPush + (percent * maxPush)), ForceMode.Impulse);
+            M471Animator.SetTrigger("Fire_02");
 
-            rb.AddForce(-transform.forward * percent * forcePush, ForceMode.Impulse);
+            chargeTime = 0;
+            canFirePush = false;
+        }
 
-            M471Animator.SetTrigger("ALT_Fire_01");
+        if (!canFirePush)
+        {
+            cooldown += Time.deltaTime;
+            Debug.Log(cooldown);
 
             chargeTime = 0;
         }
 
         //Reload -------------------------------------------------------------------------------------
         //Starts the reload sequence
-        if(Input.GetKeyUp("r") && clip < 3 && !reloading)
+        if (Input.GetKeyUp("r") && clip < 3 && !reloading)
         {
             M471Animator.SetTrigger("Reload_01A");
             reloading = true;
@@ -116,7 +135,7 @@ public class Hologun : MonoBehaviour
         {
             reloadTime += Time.deltaTime; //reloadTime adjusts the time between inserting shells
 
-            if(reloadTime > 0.125f) //change this to how long the reload animation takes
+            if(reloadTime > 1f) //change this to how long the reload animation takes
             {
                 M471Animator.SetTrigger("Reload_01C");
                 clip++;
@@ -160,4 +179,6 @@ public class Hologun : MonoBehaviour
             M471Animator.SetTrigger("Inspect");
         }
     }
+
+  
 }
